@@ -34,6 +34,8 @@ function App() {
   const notDoneCount = todoLeste.filter((t) => !t.isDone).length;
 
   const [showAlert, setShowAlert] = useState(false);
+  const [showDoneAlert, setShowDoneAlert] = useState(false);
+  const [showEditeAlert, setShowEditeAlert] = useState(false);
 
   // _____________________________________________________________________________________________________________
 
@@ -215,6 +217,7 @@ function App() {
                     todo.id === editId ? { ...todo, text: editText } : todo,
                   ),
                 );
+                setShowEditeAlert(true);
                 setOpenEdit(false);
               }}
             >
@@ -240,6 +243,7 @@ function App() {
                 ]);
                 setText("");
                 setShowAlert(false); // نخفي الخطأ لو كان ظاهر
+                setShowDoneAlert(true);
               } else {
                 setShowAlert(true); // نعرض الخطأ
               }
@@ -273,6 +277,30 @@ function App() {
         <Alert severity="error" variant="filled">
           <AlertTitle>خطأ</AlertTitle>
           لا يمكن إضافة مهمة فارغة
+        </Alert>
+      </Snackbar>
+
+      <Snackbar
+        open={showDoneAlert}
+        autoHideDuration={2000}
+        onClose={() => setShowDoneAlert(false)}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+      >
+        <Alert severity="success" variant="filled">
+          <AlertTitle>تم</AlertTitle>
+          تمت الاضافة بنجاح
+        </Alert>
+      </Snackbar>
+
+      <Snackbar
+        open={showEditeAlert}
+        autoHideDuration={2000}
+        onClose={() => setShowEditeAlert(false)}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <Alert severity="info" variant="filled">
+          <AlertTitle>تعديل</AlertTitle>
+          تم التعديل بنجاح
         </Alert>
       </Snackbar>
       {/* __________________________________________ */}
