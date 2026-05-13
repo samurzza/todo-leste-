@@ -126,7 +126,8 @@ function App() {
           </Box>
         </Box>
       ));
-  }, [todoLeste, filter, openEdit, editText]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [todoLeste, filter, openEdit, editText ]);
   // لاحظ أننا وضعنا openEdit و editText هنا لأنك تضع الـ Dialog داخل الـ map
 
   // 2. الحفظ التلقائي عند حدوث أي تغيير في المصفوفة
